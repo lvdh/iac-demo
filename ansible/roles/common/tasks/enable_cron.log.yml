@@ -1,0 +1,14 @@
+---
+- name: enable /var/log/cron.log in rsyslog config
+  lineinfile:
+    dest: /etc/rsyslog.d/50-default.conf # >=2.3: path vs name
+    regexp: '^cron\.\*'
+    insertafter: '^#cron\.\*'
+    line: 'cron.*                          /var/log/cron.log'
+  register: rsyslog50default
+
+- name: activate new rsyslog config
+  service:
+    name: rsyslog
+    state: restarted
+  when: rsyslog50default.changed

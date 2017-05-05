@@ -1,0 +1,12 @@
+---
+- name: allow SSH
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: default deny incoming, enable firewall
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming

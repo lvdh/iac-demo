@@ -1,0 +1,36 @@
+---
+- name: add New Relic apt repository key
+  apt_key:
+    url: https://download.newrelic.com/548C16BF.gpg
+    state: present
+
+- name: add New Relic apt repository
+  apt_repository:
+    repo: deb http://apt.newrelic.com/debian/ newrelic non-free
+    state: present
+    filename: newrelic
+    update_cache: yes
+
+- name: install newrelic-sysmond
+  apt:
+    name: newrelic-sysmond
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: configure newrelic-sysmond
+  template:
+    src: nrsysmond.cfg.j2
+    dest: "/etc/newrelic/nrsysmond.cfg"
+    owner: newrelic
+    group: newrelic
+    mode: '0640'
+    backup: yes
+  notify:
+    - restart newrelic-sysmond
+
+- name: enable service, ensure newrelic-sysmond is running
+  service:
+    name: newrelic-sysmond
+    state: started
+    enabled: yes

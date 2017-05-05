@@ -1,0 +1,29 @@
+# Azure account credentials
+subscription_id      = ""
+tenant_id            = ""
+client_id            = ""
+client_secret        = ""
+
+# Azure environment
+location             = "eastus2"
+environment          = "dev" # dev|staging|prod
+alias                = "iac" # service name/alias
+deploy_id            = "demo" # random lowercase alphanum, <=6 chars
+
+# Azure Network
+cidr_network         = ["172.31.254.0/24"]
+cidr_subnet          = "172.31.254.0/24"
+
+# Azure VM credentials (pass required for set-up, SSH pass auth is disabled)
+#vm_admin_username    = "ubuntu"
+vm_admin_password    = ""
+vm_admin_ssh_pubkey  = "~/.ssh/id_rsa.pub"
+
+# Azure VM
+vm_quantity          = 3
+vm_size              = "Standard_DS1_v2"
+#vm_os_publisher      = "Canonical"
+#vm_os_offer          = "UbuntuServer"
+#vm_os_sku            = "16.04.0-LTS"
+#vm_os_version        = "16.04.201611150"
+#vm_data_disk_size    = 20

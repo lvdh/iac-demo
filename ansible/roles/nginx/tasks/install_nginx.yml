@@ -1,0 +1,33 @@
+---
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: create nginx config
+  template:
+    src: "../files/nginx.conf"
+    dest: "/etc/nginx/nginx.conf"
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify:
+    - restart nginx
+
+- name: create web page
+  template:
+    src: "index.html.j2"
+    dest: "/var/www/html/index.html"
+    owner: www-data
+    group: www-data
+    mode: '0644'
+    backup: yes
+
+- name: enable service, ensure nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes

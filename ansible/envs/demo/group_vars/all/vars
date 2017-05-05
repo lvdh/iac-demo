@@ -1,0 +1,2 @@
+env: demo
+newrelic_license_key: '{{ vault_newrelic_license_key }}'

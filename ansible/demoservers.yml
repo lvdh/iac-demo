@@ -1,0 +1,21 @@
+---
+- hosts: demoservers
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - common
+    - newrelic-sysmond
+    # TODO: add docker
+    - nginx # TODO: docker run --name webserver -p 8080:80 -v /var/www/html:/usr/share/nginx/html:ro -d nginx
+
+# TODO:
+# - add template copy for index.html
+# - add docker role (copy from devops)
+# - add nginx service (copy from multiplexer service)
+#docker run \
+#  --name webserver \
+#  --publish 80:80 \
+#  --volume /var/www/html:/usr/share/nginx/html:ro \
+#  --detach \
+#  nginx

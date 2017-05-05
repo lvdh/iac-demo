@@ -1,0 +1,6 @@
+---
+- name: firewall; add rule, allow HTTP
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp

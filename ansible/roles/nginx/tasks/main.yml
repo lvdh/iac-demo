@@ -1,0 +1,3 @@
+---
+- include: install_nginx.yml
+- include: firewall_allow_http.yml

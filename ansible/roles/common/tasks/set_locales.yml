@@ -1,0 +1,17 @@
+---
+- name: install language pack (English)
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+  - language-pack-en-base # Generates locales post-install
+
+- name: configure locales
+  copy:
+    src: ../files/etc/default/locale
+    dest: /etc/default/locale
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"

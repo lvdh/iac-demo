@@ -1,0 +1,8 @@
+---
+- include: enable_firewall.yml
+- include: install_fail2ban.yml
+- include: authorize_ssh_users.yml
+- include: set_locales.yml
+- include: enable_cron.log.yml
+- include: enable_https_repos.yml
+- include: install_system_tools.yml
